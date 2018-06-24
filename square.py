@@ -1,6 +1,6 @@
 from sys import argv
 
-from numpy import sum, zeros
+from numpy import sum, zeros, array
 
 
 def generate_square(val):
@@ -61,4 +61,14 @@ def check_square(square):
 
 
 if __name__ == '__main__':
-    print(' ' + str(generate_square(int(argv[1]))).replace("[", '').replace(']', ''))
+    if argv[1] == 'generate':
+        print(' ' + str(generate_square(int(argv[2]))).replace("[", '').replace(']', ''))
+    elif argv[1] == 'check':
+        l = int(argv[2])
+        square_string = str.split(argv[3], " ")
+        square_list = []
+        for i in range(l):
+            square_list.append(square_string[l * i: l * (i + 1)])
+        square = array(square_list).astype(int)
+
+        print(check_square(square))
